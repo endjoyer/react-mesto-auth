@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Popup from './Popup';
 import PopupWithForm from './PopupWithForm';
 import { useForm } from 'react-hook-form';
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
+const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
   const {
     register,
     formState: { errors, isValid },
@@ -11,14 +11,15 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
     reset,
   } = useForm({ mode: 'onChange', criteriaMode: 'all' });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     onUpdateAvatar({
       avatar: getValues('avatar'),
     });
-  }
-  React.useEffect(() => {
+  };
+
+  useEffect(() => {
     reset();
   }, [isOpen]);
 
@@ -44,7 +45,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
               validate: (v) => v.includes('http'),
             })}
           />
-          <span className="avatar-error popup__input-error popup__input-error_active">
+          <span className="popup__input-error popup__input-error_active">
             {errors?.avatar &&
               (errors?.avatar?.message || 'Введите ссылку на изображение.')}
           </span>
@@ -52,6 +53,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
       </PopupWithForm>
     </Popup>
   );
-}
+};
 
 export default EditAvatarPopup;

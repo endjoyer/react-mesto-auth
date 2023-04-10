@@ -9,28 +9,19 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     useFormValidation();
   const currentUser = React.useContext(CurrentUserContext);
 
-  // const [name, setName] = React.useState('');
-  // const [description, setDescription] = React.useState('');
-
   React.useEffect(() => {
     if (currentUser) {
       setValue('userName', currentUser.name);
       setValue('userDescription', currentUser.about);
     }
-
-    // setName(currentUser.name);
-    // setDescription(currentUser.about);
   }, [currentUser, setValue]);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Передаём значения управляемых компонентов во внешний обработчик
     onUpdateUser({
       name: values['userName'],
       about: values['userDescription'],
-      // name,
-      // about: description,
     });
   }
 
@@ -66,9 +57,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
             maxLength="40"
             onChange={handleChange}
             value={values['userName'] ?? ''}
-            // (e) => setName(e.target.value)
           />
-          <span className={`name-error ${errorClassName('userName')}`}>
+          <span className={`${errorClassName('userName')}`}>
             {errors['userName']}
           </span>
         </label>
@@ -84,7 +74,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
             onChange={handleChange}
             value={values['userDescription'] ?? ''}
           />
-          <span className={`about-error ${errorClassName('userDescription')}`}>
+          <span className={`${errorClassName('userDescription')}`}>
             {errors['userDescription']}
           </span>
         </label>

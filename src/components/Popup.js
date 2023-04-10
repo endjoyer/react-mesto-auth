@@ -1,18 +1,18 @@
 import { useEffect } from 'react';
 
-export default function Popup({ isOpen, onClose, children, name }) {
+const Popup = ({ isOpen, onClose, children, name }) => {
   useEffect(() => {
-    function handleEscClose(evt) {
+    const handleEscClose = (evt) => {
       if (evt.key === 'Escape') {
         onClose();
       }
-    }
+    };
 
-    function handleOverlayClose(evt) {
+    const handleOverlayClose = (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
         onClose();
       }
-    }
+    };
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscClose);
@@ -22,16 +22,16 @@ export default function Popup({ isOpen, onClose, children, name }) {
         document.removeEventListener('mousedown', handleOverlayClose);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
-    <>
-      <aside
-        className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}
-        id="popup-edit"
-      >
-        {children}
-      </aside>
-    </>
+    <aside
+      className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}
+      id="popup-edit"
+    >
+      {children}
+    </aside>
   );
-}
+};
+
+export default Popup;

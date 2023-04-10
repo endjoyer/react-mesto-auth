@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './Card.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
@@ -11,7 +11,7 @@ function Main({
   onCardDelete,
   cards,
 }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   const handleEditAvatarClick = () => onEditAvatar(true);
   const handleEditProfileClick = () => onEditProfile(true);
@@ -35,7 +35,7 @@ function Main({
           <img
             className="profile__avatar"
             src={currentUser.avatar}
-            alt="Картинка профиля"
+            alt={`Картинка профиля ${currentUser.name}`}
           />
           <button
             className="profile__edit-avatar-button"

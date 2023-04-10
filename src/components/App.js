@@ -12,7 +12,6 @@ import * as auth from '../utils/auth.js';
 import ProtectedRouteElement from './ProtectedRoute.js';
 import Login from './Login.js';
 import Register from './Register.js';
-import InfoTooltip from './InfoTooltip.js';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -229,7 +228,6 @@ function App() {
           />
         </Routes>
         {shouldRenderFooter && <Footer />}
-        <InfoTooltip />
         <EditProfilePopup
           isLoading={isLoading}
           isOpen={isEditProfilePopupOpen}

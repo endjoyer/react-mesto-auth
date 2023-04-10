@@ -1,12 +1,14 @@
 import Popup from './Popup';
 
 function RegisterPopup({ onClose, isOpenOk, isOpenError }) {
+  const isOpen = isOpenOk || isOpenError;
+  const regImgClass = isOpenError ? 'popup__reg-img_error' : '';
+  const regText = isOpenOk
+    ? 'Вы успешно зарегистрировались!'
+    : 'Что-то пошло не так! Попробуйте ещё раз.';
+
   return (
-    <Popup
-      isOpen={isOpenOk || isOpenError}
-      onClose={onClose}
-      name="registerPopup"
-    >
+    <Popup isOpen={isOpen} onClose={onClose} name="registerPopup">
       <div className="popup__container">
         <button
           className={'popup__close'}
@@ -14,16 +16,8 @@ function RegisterPopup({ onClose, isOpenOk, isOpenError }) {
           type="button"
           onClick={onClose}
         />
-        <div
-          className={`popup__reg-img ${
-            isOpenError ? 'popup__reg-img_error' : ''
-          }`}
-        ></div>
-        <p className="popup__reg-text">
-          {isOpenOk
-            ? 'Вы успешно зарегистрировались!'
-            : 'Что-то пошло не так! Попробуйте ещё раз.'}
-        </p>
+        <div className={`popup__reg-img ${regImgClass}`} />
+        <p className="popup__reg-text">{regText}</p>
       </div>
     </Popup>
   );

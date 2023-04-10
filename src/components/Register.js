@@ -9,32 +9,22 @@ const Register = ({ submitOk, submitError }) => {
     formState: { errors, isValid },
     getValues,
     reset,
-  } = useForm({ mode: 'onChange', criteriaMode: 'all' });
-
-  // const [formValue, setFormValue] = useState({
-  //   password: '',
-  //   email: '',
-  // });
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setFormValue({
-  //     ...formValue,
-  //     [name]: value,
-  //   });
-  // };
+    handleSubmit,
+  } = useForm({
+    mode: 'onChange',
+    criteriaMode: 'all',
+  });
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const onSubmit = (data) => {
     auth
-      .register(getValues('password'), getValues('email'))
+      .register(data.password, data.email)
       .then((res) => {
         if (res.data) {
-          navigate('/sign-in', { replace: true });
+          navigate('/sign-in', {
+            replace: true,
+          });
           submitOk(true);
         }
       })
@@ -49,7 +39,7 @@ const Register = ({ submitOk, submitError }) => {
       <PopupWithForm
         name="auth"
         title="Регистрация"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         btnText="Зарегистрироваться"
         isValid={isValid}
       >

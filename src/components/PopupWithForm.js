@@ -2,17 +2,7 @@ import React from 'react';
 
 const PopupWithForm = React.forwardRef(
   (
-    {
-      name,
-      isOpen,
-      title,
-      onSubmit,
-      onClose,
-      children,
-      isLoading,
-      btnText,
-      isValid,
-    },
+    { name, title, onSubmit, onClose, children, isLoading, btnText, isValid },
     ref
   ) => {
     return (
@@ -45,10 +35,7 @@ const PopupWithForm = React.forwardRef(
             className={`popup__btn ${
               name === 'auth' ? 'popup__btn_auth' : ''
             } ${
-              name === 'edit' ||
-              name === 'add' ||
-              name === 'edit-avatar' ||
-              name === 'auth'
+              name !== 'confirmation'
                 ? isValid
                   ? ''
                   : 'popup__btn_inactive'

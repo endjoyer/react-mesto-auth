@@ -11,20 +11,6 @@ const Login = ({ handleLogin }) => {
     reset,
   } = useForm({ mode: 'onChange', criteriaMode: 'all' });
 
-  // const [formValue, setFormValue] = useState({
-  //   password: '',
-  //   email: '',
-  // });
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setFormValue({
-  //     ...formValue,
-  //     [name]: value,
-  //   });
-  // };
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -71,7 +57,7 @@ const Login = ({ handleLogin }) => {
               },
             })}
           />
-          <span className="email-error popup__input-error popup__input-error_active">
+          <span className="popup__input-error popup__input-error_active">
             {errors?.email && errors?.email?.message}
           </span>
         </label>
@@ -93,7 +79,7 @@ const Login = ({ handleLogin }) => {
               },
             })}
           />
-          <span className="password-error popup__input-error popup__input-error_active">
+          <span className="popup__input-error popup__input-error_active">
             {errors?.password && errors?.password?.message}
           </span>
         </label>

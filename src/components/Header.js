@@ -1,17 +1,18 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 function Header({ userData }) {
-  const location = useLocation();
-  const isSignUpPage = location.pathname === '/sign-up';
-  const isMainPage = location.pathname === '/';
+  const { pathname } = useLocation();
+  const isSignUpPage = pathname === '/sign-up';
+  const isMainPage = pathname === '/';
 
-  function signOut() {
+  const signOut = () => {
     localStorage.removeItem('jwt');
-  }
+  };
 
   return (
     <>
-      {isMainPage ? (
+      {isMainPage && (
         <div className="hamburger">
           <input id="hamburger__toggle" type="checkbox" />
           <label className="hamburger__btn" htmlFor="hamburger__toggle">
@@ -25,16 +26,14 @@ function Header({ userData }) {
             </Link>
           </div>
         </div>
-      ) : (
-        ''
       )}
       <header className="header">
         <div className="header__container">
           <div
             className={`header__logo ${
-              !isMainPage ? 'header__logo_no-main' : ''
+              isMainPage ? '' : 'header__logo_no-main'
             }`}
-          ></div>
+          />
           {!isMainPage ? (
             <Link
               to={isSignUpPage ? '/sign-in' : '/sign-up'}
