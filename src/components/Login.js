@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
-import * as auth from '../utils/auth.js';
 import { useForm } from 'react-hook-form';
 
-const Login = ({ handleLogin }) => {
+const Login = ({ onAuthorization }) => {
   const {
     register,
     formState: { errors, isValid },
@@ -11,24 +10,14 @@ const Login = ({ handleLogin }) => {
     reset,
   } = useForm({ mode: 'onChange', criteriaMode: 'all' });
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    auth
-      .authorize(getValues('password'), getValues('email'))
-      .then((data) => {
-        if (data.token) {
-          handleLogin();
-          navigate('/', { replace: true });
-          reset();
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
+    onAuthorization(getValues('password'), getValues('email'));
   };
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <div className="auth">

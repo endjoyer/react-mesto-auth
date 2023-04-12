@@ -1,4 +1,4 @@
-# Место ([mesto-react](https://endjoyer.github.io/mesto-react/))
+# Место ([mesto-react](https://endjoyer.github.io/mesto-react-auth/))
 
 ![screenshot](./src/images/preview.jpg)
 
@@ -39,7 +39,7 @@ _- "Mesto" - это интерактивная страница, где поль
 - Клонировать репозиторий:
 
 ```console
-    git clone https://github.com/endjoyer/mesto-react.git
+    git clone https://github.com/endjoyer/mesto-react-auth.git
 ```
 
 - Собрать проект Вебпаком:
@@ -56,7 +56,7 @@ _- "Mesto" - это интерактивная страница, где поль
 
 ### Ссылка на сайт:
 
-https://endjoyer.github.io/mesto-react/
+https://endjoyer.github.io/mesto-react-auth/
 
 [Ссылка на макет в Figma](https://www.figma.com/file/3YKkZfiSS1K8s44YUQTLyJ/JavaScript.-Sprint-9?node-id=109%3A2&t=7tlU9OiVAkQQ1eAp-0)
 

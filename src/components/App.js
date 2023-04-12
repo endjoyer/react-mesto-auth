@@ -107,13 +107,12 @@ function App() {
       .editUser(data)
       .then((data) => {
         setCurrentUser(data);
+        closeAllPopups();
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
 
@@ -124,13 +123,12 @@ function App() {
       .editUserAvatar(data)
       .then((data) => {
         setCurrentUser(data);
+        closeAllPopups();
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
 
@@ -141,13 +139,43 @@ function App() {
       .postCard(data)
       .then((data) => {
         setCards([data, ...cards]);
+        closeAllPopups();
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
+      });
+  }
+
+  function handleAuthorization(password, email) {
+    auth
+      .authorize(password, email)
+      .then((data) => {
+        if (data.token) {
+          handleLogin();
+          navigate('/', { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
+  function handleRegister(data) {
+    auth
+      .register(data.password, data.email)
+      .then((res) => {
+        if (res.data) {
+          navigate('/sign-in', {
+            replace: true,
+          });
+          setIsRegisterOkPopupOpened(true);
+        }
+      })
+      .catch((err) => {
+        setIsRegisterErrorPopupOpened(true);
+        console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -215,16 +243,11 @@ function App() {
           />
           <Route
             path="/sign-up"
-            element={
-              <Register
-                submitError={setIsRegisterErrorPopupOpened}
-                submitOk={setIsRegisterOkPopupOpened}
-              />
-            }
+            element={<Register onRegister={handleRegister} />}
           />
           <Route
             path="/sign-in"
-            element={<Login handleLogin={handleLogin} />}
+            element={<Login onAuthorization={handleAuthorization} />}
           />
         </Routes>
         {shouldRenderFooter && <Footer />}
