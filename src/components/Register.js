@@ -1,13 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PopupWithForm from './PopupWithForm';
-import * as auth from '../utils/auth.js';
 import { useForm } from 'react-hook-form';
 
-const Register = ({ submitOk, submitError }) => {
+const Register = ({ onRegister }) => {
   const {
     register,
     formState: { errors, isValid },
-    getValues,
     reset,
     handleSubmit,
   } = useForm({
@@ -15,24 +14,13 @@ const Register = ({ submitOk, submitError }) => {
     criteriaMode: 'all',
   });
 
-  const navigate = useNavigate();
-
   const onSubmit = (data) => {
-    auth
-      .register(data.password, data.email)
-      .then((res) => {
-        if (res.data) {
-          navigate('/sign-in', {
-            replace: true,
-          });
-          submitOk(true);
-        }
-      })
-      .catch((err) => {
-        submitError(true);
-        console.log(`Ошибка: ${err}`);
-      });
+    onRegister(data);
   };
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <div className="auth">
