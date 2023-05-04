@@ -52,5 +52,5 @@ _- "Mesto" - это интерактивная страница, где поль
 
 https://endjoyer.github.io/mesto-react-auth/
 
-[Ссылка на макет в Figma](https://www.figma.com/file/3YKkZfiSS1K8s44YUQTLyJ/JavaScript.-Sprint-9?node-id=109%3A2&t=7tlU9OiVAkQQ1eAp-0)
+[Ссылка на макет в Figma](https://www.figma.com/file/4FJT7X9cDHiFOWEDAVb76R/JavaScript.-Sprint-12?t=wQXCzNg7G4uHn5NG-0)
 
