@@ -1,4 +1,4 @@
-# Место ([mesto-react-auth](https://endjoyer.github.io/mesto-react-auth/))
+# Место
 
 ![screenshot](./src/images/preview.jpg)
 
@@ -50,7 +50,7 @@ _- "Mesto" - это интерактивная страница, где поль
 
 ### Ссылка на сайт:
 
-https://endjoyer.github.io/mesto-react-auth/
+https://endjoyer.github.io/mesto-react/ (его предедущая версия, без авторизации, валидации и т.д.)
 
 [Ссылка на макет в Figma](https://www.figma.com/file/4FJT7X9cDHiFOWEDAVb76R/JavaScript.-Sprint-12?t=wQXCzNg7G4uHn5NG-0)
 
