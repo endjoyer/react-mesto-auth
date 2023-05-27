@@ -33,7 +33,7 @@ _- "Mesto" - это интерактивная страница, где поль
 - Клонировать репозиторий:
 
 ```console
-    git clone https://github.com/endjoyer/mesto-react-auth.git
+    git clone https://github.com/endjoyer/react-mesto-auth
 ```
 
 - Собрать проект Вебпаком:
