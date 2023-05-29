@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react';
-import { api } from '../utils/api.js';
-import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import { useEffect, useState } from "react";
+import { api } from "../utils/api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import {
   useLocation,
   Route,
   Routes,
   Navigate,
   useNavigate,
-} from 'react-router-dom';
-import * as auth from '../utils/auth.js';
-import ProtectedRouteElement from './ProtectedRoute.js';
-import Login from './Login.js';
-import Register from './Register.js';
-import Header from './Header.js';
-import Main from './Main.js';
-import Footer from './Footer.js';
-import ImagePopup from './ImagePopup.js';
-import EditProfilePopup from './EditProfilePopup.js';
-import EditAvatarPopup from './EditAvatarPopup.js';
-import AddPlacePopup from './AddPlacePopup.js';
-import ConfirmationPopup from './ConfirmationPopup.js';
-import RegisterPopup from './RegisterPopup.js';
+} from "react-router-dom";
+import * as auth from "../utils/auth.js";
+import ProtectedRouteElement from "./ProtectedRoute.js";
+import Login from "./Login.js";
+import Register from "./Register.js";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import ImagePopup from "./ImagePopup.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
+import ConfirmationPopup from "./ConfirmationPopup.js";
+import RegisterPopup from "./RegisterPopup.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false),
@@ -30,7 +30,7 @@ function App() {
     [isLoading, setIsLoading] = useState(false),
     [cardToDelete, setCardToDelete] = useState(null),
     [selectedCard, setSelectedCard] = useState({}),
-    [currentUser, setCurrentUser] = useState(''),
+    [currentUser, setCurrentUser] = useState(""),
     [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isRegisterOkPopupOpened, setIsRegisterOkPopupOpened] = useState(false);
@@ -42,7 +42,7 @@ function App() {
   const location = useLocation();
 
   const shouldRenderFooter =
-    location.pathname !== '/sign-up' && location.pathname !== '/sign-in';
+    location.pathname !== "/sign-up" && location.pathname !== "/sign-in";
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -154,7 +154,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           handleLogin();
-          navigate('/', { replace: true });
+          navigate("/", { replace: true });
         }
       })
       .catch((err) => {
@@ -167,7 +167,7 @@ function App() {
       .register(data.password, data.email)
       .then((res) => {
         if (res.data) {
-          navigate('/sign-in', {
+          navigate("/sign-in", {
             replace: true,
           });
           setIsRegisterOkPopupOpened(true);
@@ -184,8 +184,8 @@ function App() {
   }, []);
 
   const handleTokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
       auth
         .checkToken(jwt)
         .then((res) => {
@@ -195,7 +195,7 @@ function App() {
             };
             setLoggedIn(true);
             setUserData(userData);
-            navigate('/', { replace: true });
+            navigate("/", { replace: true });
           }
         })
         .catch((err) => {
@@ -214,7 +214,7 @@ function App() {
         <Header userData={userData} />
         <Routes>
           <Route
-            path="/mesto-react"
+            path="/react-mesto-auth"
             element={
               loggedIn ? (
                 <Navigate to="/" replace />
